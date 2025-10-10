@@ -1,0 +1,7 @@
+<h1>Add new patient</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Save</button>
+</form>
+<a href="{% url 'patients' %}">Cancel</a>

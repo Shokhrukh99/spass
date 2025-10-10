@@ -1,9 +1,12 @@
 <h1>Patients</h1>
-
+<a href="{% url 'create_patient' %}">Create patient</a>
 <ul>
-
     {% for patient in patients %}
-    <li> {{patient.name}} - {{patient.dob}}</li>
+    <li> 
+        {{patient.name}} - {{patient.dob}} 
+        <a href="{% url 'update_patient' patient.id %}">Edit</a>
+        <a href="{% url 'delete_patient' patient.id %}">Delete</a>
+    </li>
     {% endfor %}
-
 </ul>
+<a href="{% url 'home' %}">Cancel</a>

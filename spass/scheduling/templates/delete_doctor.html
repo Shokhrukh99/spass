@@ -1,0 +1,7 @@
+<h1>Delete doctor</h1>
+<p>Are you sure you want to delete {{doctor.name}}</p>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Yes</button>
+</form>
+<a href="{% url 'doctors' %}">Cancel</a>
