@@ -1,4 +1,41 @@
-<h1>Welcome to SPASS platform</h1>
+{% extends 'base.html' %}
 
-<a href="/doctors">Doctor</a>
-<a href="/patients">Patient</a>
+{% block title %}
+    Home - Scheduling System
+{% endblock %}
+
+
+{% block content %}
+<h1>Dashboard</h1>
+  <div class="row g-3">
+    <div class="col-md-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">Patients</h5>
+          <p class="card-text text-secondary">{{ patient_count }} records</p>
+          <a href="{% url 'patients' %}" class="btn btn-primary">Manage Patients</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">Doctors</h5>
+          <p class="card-text text-secondary">{{ doctor_count }} records</p>
+          <a href="{% url 'doctors' %}" class="btn btn-primary">Manage Doctors</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">Doctors</h5>
+          <p class="card-text text-secondary">{{ doctor_count }} records</p>
+          <a href="{% url 'doctors' %}" class="btn btn-primary">Manage Doctors</a>
+        </div>
+      </div>
+    </div>
+    
+
+{% endblock %}
+    

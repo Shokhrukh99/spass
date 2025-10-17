@@ -1,7 +1,0 @@
-<h1>Update doctor</h1>
-<form method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit">Update</button>
-</form>
-<a href="{% url 'doctors' %}">Cancel</a>

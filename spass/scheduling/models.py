@@ -1,4 +1,4 @@
-from django.db.models import Model, CharField, EmailField, DateField
+from django.db.models import Model, CharField, EmailField, DateField, TextField
 
 # Create your models here.
 class Doctor(Model):
@@ -18,3 +18,7 @@ class Patient(Model):
 
     def __str__(self):
         return f'{self.name} - {self.dob}'
+
+class Service(Model):
+    name = CharField(max_length=100)
+    description = TextField(blank=True)
