@@ -41,3 +41,16 @@ class ServiceForm(BaseStyledModelForm):
     class Meta:
         model = Service
         fields = '__all__'
+
+class AppointmentForm(BaseStyledModelForm):
+    class Meta:
+        model = Appointment
+        fields = '__all__'
+        
+        widgets = {
+            'start_time': DateInput(attrs={
+                'type': 'datetime-local',
+                'class': 'form-control',
+                'placeholder': 'Select date and time'
+            })
+        }

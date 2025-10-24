@@ -8,7 +8,7 @@
 {% block content %}
 <h1>Dashboard</h1>
   <div class="row g-3">
-    <div class="col-md-4">
+    <div class="col-md-3">
       <div class="card shadow-sm h-100">
         <div class="card-body">
           <h5 class="card-title">Patients</h5>
@@ -17,7 +17,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <div class="card shadow-sm h-100">
         <div class="card-body">
           <h5 class="card-title">Doctors</h5>
@@ -26,12 +26,21 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <div class="card shadow-sm h-100">
         <div class="card-body">
-          <h5 class="card-title">Doctors</h5>
-          <p class="card-text text-secondary">{{ doctor_count }} records</p>
-          <a href="{% url 'doctors' %}" class="btn btn-primary">Manage Doctors</a>
+          <h5 class="card-title">Services</h5>
+          <p class="card-text text-secondary">{{ service_count }} records</p>
+          <a href="{% url 'services' %}" class="btn btn-primary">Manage Services</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">Appointments</h5>
+          <p class="card-text text-secondary">{{ appointment_count }} records</p>
+          <a href="{% url 'appointments' %}" class="btn btn-primary">Manage Appointments</a>
         </div>
       </div>
     </div>

@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from .models import Doctor, Patient, Service
 from .forms import *
+from django.views.generic import ListView, UpdateView, CreateView, DeleteView
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -11,7 +13,8 @@ def home(request):
     context={
         'patient_count': Patient.objects.count(),
         'doctor_count': Doctor.objects.count(),
-        'service_count': Doctor.objects.count(),
+        'service_count': Service.objects.count(),
+        'appointment_count': Appointment.objects.count()
     }
     return render(request, 'home.html', context=context)
 
@@ -142,3 +145,27 @@ def delete_service(request, id):
         return redirect('services')
     
     return render(request, 'services/delete_service.html', {'service': service})
+
+# --- APPOINTMENT CRUD ---
+class AppointmentListView(ListView):
+    model = Appointment
+    template_name = 'appointments/appointments.html'
+    context_object_name = 'appointments'
+    ordering = ['-start_time']
+
+class AppointmentCreateView(CreateView):
+    model = Appointment
+    form_class = AppointmentForm
+    template_name = 'appointments/create_appointment.html'
+    success_url = reverse_lazy('appointments')
+
+class AppointmentUpdateView(UpdateView):
+    model = Appointment
+    form_class = AppointmentForm
+    template_name = 'appointments/update_appointment.html'
+    success_url = reverse_lazy('appointments')
+
+class AppointmentDeleteView(DeleteView):
+    model = Appointment
+    template_name = 'appointments/delete_appointment.html'
+    success_url = reverse_lazy('appointments')
