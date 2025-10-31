@@ -24,3 +24,5 @@ urlpatterns = [
     path('appointments/update/<int:pk>', views.AppointmentUpdateView.as_view(), name='update_appointment'),
     path('appointments/delete/<int:pk>', views.AppointmentDeleteView.as_view(), name='delete_appointment'),
 ]
+
+handler403 = "scheduling.views.custom_permission_denied_view"

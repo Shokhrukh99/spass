@@ -1,7 +1,8 @@
 from django.db.models import (
+    OneToOneField,
     Model, CharField, EmailField, DateField, TextField, TextChoices, DateTimeField,
     ForeignKey, CASCADE)
-
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Doctor(Model):
@@ -9,6 +10,7 @@ class Doctor(Model):
     email = EmailField(unique=True)
     specialization = CharField(max_length=100)
     phone_number = CharField(max_length=15)
+    user = OneToOneField(User, on_delete=CASCADE, null=True, blank=True, related_name='doctor_profile')
 
     def __str__(self):
         return f'{self.name} - {self.specialization}'
