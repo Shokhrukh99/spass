@@ -162,7 +162,63 @@ def delete_service(request, id):
     
     return render(request, 'services/delete_service.html', {'service': service})
 
+
+
 # --- APPOINTMENT CRUD ---
+@permission_required('scheduling.view_appointment', raise_exception=True)
+def appointments_list(request):
+    user = request.user
+
+    if user.groups.filter(name__iexact='Doctor').exists():
+        doctor_profile = getattr(user, 'doctor_profile', None)
+        if doctor_profile:
+            appointments = Appointment.objects.filter(doctor=doctor_profile, status__in=['pending', 'approved'], ).select_related('patient', 'service').order_by('-start_time')
+        else:
+            appointments = Appointment.objects.none()
+    else:
+        # Receptionists or admins
+        appointments = Appointment.objects.select_related('doctor', 'patient', 'service').all().order_by('-start_time')
+
+    return render(request, 'appointments/appointments.html', {'appointments': appointments})
+
+@permission_required('scheduling.view_appointment', raise_exception=True)
+def appointment_detail(request, pk):
+    appointment = get_object_or_404(Appointment.objects.select_related('doctor', 'patient', 'service'), pk=pk)
+
+    return render(request, 'appointments/detail.html', {
+        'appointment': appointment,
+    })
+
+@permission_required('scheduling.add_appointment', raise_exception=True)
+def create_appointment(request):
+    from django.utils import timezone
+
+    if request.method == 'POST':
+        form = AppointmentForm(request.POST)
+        if form.is_valid():
+            appointment = form.save(commit=False)
+            doctor = appointment.doctor
+            start_time = appointment.start_time
+
+            # Check overlapping appointments for the same doctor
+            clash = Appointment.objects.filter(
+                doctor=doctor,
+                start_time__lte=start_time + timezone.timedelta(minutes=29),
+                start_time__gte=start_time - timezone.timedelta(minutes=29)
+            ).exists()
+
+            if clash:
+                messages.warning(request, f"Doctor {doctor.name} already has an appointment around {start_time:%Y-%m-%d %H:%M}.")
+            else:
+                appointment.save()
+                messages.success(request, "Appointment created successfully.")
+                return redirect('appointments')
+    else:
+        form = AppointmentForm()
+
+    return render(request, 'appointments/create_appointment.html', {'form': form})
+
+
 class AppointmentListView(PermissionRequiredMixin, ListView):
     model = Appointment
     template_name = 'appointments/appointments.html'
@@ -182,7 +238,7 @@ class AppointmentUpdateView(PermissionRequiredMixin, UpdateView):
     form_class = AppointmentForm
     template_name = 'appointments/update_appointment.html'
     success_url = reverse_lazy('appointments')
-    permission_required = ('scheduling.update_appointment')
+    permission_required = ('scheduling.change_appointment')
 
 class AppointmentDeleteView(PermissionRequiredMixin, DeleteView):
     model = Appointment
