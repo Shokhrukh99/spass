@@ -1,5 +1,13 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
+from rest_framework.routers import DefaultRouter
+from . import views_api
+
+router = DefaultRouter()
+router.register(r'patients', views_api.PatientViewSet)
+router.register(r'doctors', views_api.DoctorViewSet)
+router.register(r'services', views_api.ServiceViewSet)
+router.register(r'appointments', views_api.AppointmentViewSet)
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -24,6 +32,8 @@ urlpatterns = [
     path('appointments/create/', views.create_appointment, name='create_appointment'),
     path('appointments/update/<int:pk>', views.AppointmentUpdateView.as_view(), name='update_appointment'),
     path('appointments/delete/<int:pk>', views.AppointmentDeleteView.as_view(), name='delete_appointment'),
+    # --- APIs ---
+    path('api/', include(router.urls))
 ]
 
 handler403 = "scheduling.views.custom_permission_denied_view"
