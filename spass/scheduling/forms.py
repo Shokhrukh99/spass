@@ -1,4 +1,4 @@
-from django.forms import ModelForm, DateInput
+from django.forms import ModelForm, DateInput, DateTimeInput,Textarea
 from .models import *
 from django.core.exceptions import ValidationError
 
@@ -41,3 +41,22 @@ class ServiceForm(BaseStyledModelForm):
     class Meta:
         model = Service
         fields = '__all__'
+
+class AppointmentForm(BaseStyledModelForm):
+    class Meta:
+        model = Appointment
+        fields = '__all__'
+        widgets = {
+            'start_time': DateTimeInput(attrs={
+                'type': 'datetime-local',
+                'class': 'form-control',
+                'placeholder': 'Select date and time'
+            }),
+            'notes': Textarea(attrs={
+                'rows': 3,
+                'class': 'form-control',
+                'placeholder': 'Add any additional notes...'
+            }),
+        }
+
+    

@@ -1,0 +1,292 @@
+[
+    {
+        "model": "auth.group",
+        "pk": 1,
+        "fields": {
+            "name": "Doctor",
+            "permissions": [
+                38,
+                40,
+                28,
+                32,
+                36
+            ]
+        }
+    },
+    {
+        "model": "auth.group",
+        "pk": 2,
+        "fields": {
+            "name": "Receptionist",
+            "permissions": [
+                37,
+                38,
+                40,
+                25,
+                26,
+                28,
+                29,
+                30,
+                32,
+                33,
+                34,
+                36
+            ]
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$1000000$Iq5AWVqztu6YhKfW3xJLud$U1Q/pg/r4X7GAMkGANREjdBRAagmKvGf7XcnbBcJOBs=",
+            "last_login": "2025-11-07T10:00:58.916Z",
+            "is_superuser": true,
+            "username": "lecturer",
+            "first_name": "",
+            "last_name": "",
+            "email": "test@gmail.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2025-10-24T10:10:15.727Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$1000000$SQqrsvwNDMNgVHBX4dId3E$mX2G8SD1Tx20hpNQURz69e1QSAjeV7ix9P3hIgiUBf8=",
+            "last_login": "2025-11-21T09:12:39.224Z",
+            "is_superuser": false,
+            "username": "doctor",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2025-10-31T09:50:53Z",
+            "groups": [
+                1
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$1000000$pQcnT8x7GMH5V3iUoFP1TG$pj2K1i3TF59isv6X8g4k1GESyvaGfZZf8Yd1ODbOQAU=",
+            "last_login": "2025-11-07T10:00:29.206Z",
+            "is_superuser": false,
+            "username": "doctor2",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2025-10-31T10:21:27Z",
+            "groups": [
+                1
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 4,
+        "fields": {
+            "password": "pbkdf2_sha256$1000000$PRppyZvrFYtjWDMpo8IgxX$vcl/EASOU0G0Ra4edo87ZJyPfFA6CfXPh+06ObNKkmc=",
+            "last_login": "2025-11-07T10:01:31.205Z",
+            "is_superuser": false,
+            "username": "reception",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2025-11-07T10:01:13Z",
+            "groups": [
+                2
+            ],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "ibvqpwtz2ul7yfxcd3yzxjiiaxw5a93j",
+        "fields": {
+            "session_data": ".eJxVjDEOwjAMRe-SGUVO2xDDyM4ZIttxSAGlUtNOiLtDpQ6w_vfef5lI61Li2nSOYzJn05nD78YkD60bSHeqt8nKVJd5ZLspdqfNXqekz8vu_h0UauVbewUiTY6yg8yAPlCQTpHAH8FL4MQDowMUIBEMityj5s716DOfBvP-AAR8OII:1vMNC3:AKT4Lh2bWxuAHGFLeE1st3pzvBCFEUmtzEcSuRLPh0A",
+            "expire_date": "2025-12-05T09:12:39.293Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "puyji4371a5fp51pwddomdd1dm7vr4mc",
+        "fields": {
+            "session_data": ".eJxVjMEOwiAQRP-FsyFsgYAevfsNZNllpWpoUtqT8d9tkx70Npn3Zt4q4brUtPYyp5HVRYE6_XYZ6VnaDviB7T5pmtoyj1nvij5o17eJy-t6uH8HFXvd1gLWszeRzgJIhiQiiBEaOARrXUDrt4B-QAcM2UVHBBAAY2YBIfX5AuacOBk:1vCEkw:eKfG1VAFEAbOnKGFJ8f13BVF8mMpHkpkyqi6zqVlCsc",
+            "expire_date": "2025-11-07T10:10:46.871Z"
+        }
+    },
+    {
+        "model": "scheduling.doctor",
+        "pk": 2,
+        "fields": {
+            "name": "Dr. Bob Jones",
+            "email": "bob@clinic.com",
+            "specialization": "Dermatologist",
+            "phone_number": "998907654321",
+            "user": 2
+        }
+    },
+    {
+        "model": "scheduling.doctor",
+        "pk": 3,
+        "fields": {
+            "name": "Mrs. Alice Smith",
+            "email": "alice@clinic.com",
+            "specialization": "Cardiologist",
+            "phone_number": "998901234567",
+            "user": 3
+        }
+    },
+    {
+        "model": "scheduling.doctor",
+        "pk": 4,
+        "fields": {
+            "name": "Mary Johnson",
+            "email": "nalimukhamedova@wiut.uz",
+            "specialization": "Dermatologist",
+            "phone_number": "911283639",
+            "user": null
+        }
+    },
+    {
+        "model": "scheduling.patient",
+        "pk": 2,
+        "fields": {
+            "name": "Mary Johnson",
+            "email": "mary@mail.com",
+            "dob": "1985-09-20",
+            "phone_number": "998932224455"
+        }
+    },
+    {
+        "model": "scheduling.patient",
+        "pk": 10,
+        "fields": {
+            "name": "Shokhrukh Sultanov",
+            "email": "sultanovshoh@gmail.com",
+            "dob": "2025-10-17",
+            "phone_number": "998997980141"
+        }
+    },
+    {
+        "model": "scheduling.service",
+        "pk": 1,
+        "fields": {
+            "name": "Consultation",
+            "description": "Too long to read"
+        }
+    },
+    {
+        "model": "scheduling.service",
+        "pk": 2,
+        "fields": {
+            "name": "MRI",
+            "description": ""
+        }
+    },
+    {
+        "model": "scheduling.service",
+        "pk": 3,
+        "fields": {
+            "name": "OCT",
+            "description": ""
+        }
+    },
+    {
+        "model": "scheduling.appointment",
+        "pk": 1,
+        "fields": {
+            "doctor": 2,
+            "patient": 2,
+            "service": 3,
+            "status": "approved",
+            "start_time": "2025-10-24T17:00:00Z",
+            "notes": "The patient was diagnosed with diabetes"
+        }
+    },
+    {
+        "model": "scheduling.appointment",
+        "pk": 3,
+        "fields": {
+            "doctor": 2,
+            "patient": 10,
+            "service": 2,
+            "status": "approved",
+            "start_time": "2025-10-24T10:16:39Z",
+            "notes": ""
+        }
+    },
+    {
+        "model": "scheduling.appointment",
+        "pk": 4,
+        "fields": {
+            "doctor": 2,
+            "patient": 2,
+            "service": 1,
+            "status": "pending",
+            "start_time": "2025-10-24T10:16:48Z",
+            "notes": ""
+        }
+    },
+    {
+        "model": "scheduling.appointment",
+        "pk": 5,
+        "fields": {
+            "doctor": 2,
+            "patient": 2,
+            "service": 2,
+            "status": "pending",
+            "start_time": "2025-10-25T14:00:00Z",
+            "notes": ""
+        }
+    },
+    {
+        "model": "scheduling.appointment",
+        "pk": 6,
+        "fields": {
+            "doctor": 3,
+            "patient": 2,
+            "service": 2,
+            "status": "pending",
+            "start_time": "2025-11-07T06:18:18Z",
+            "notes": ""
+        }
+    },
+    {
+        "model": "scheduling.appointment",
+        "pk": 7,
+        "fields": {
+            "doctor": 3,
+            "patient": 10,
+            "service": 2,
+            "status": "pending",
+            "start_time": "2025-11-07T09:31:03Z",
+            "notes": ""
+        }
+    },
+    {
+        "model": "scheduling.appointment",
+        "pk": 8,
+        "fields": {
+            "doctor": 2,
+            "patient": 2,
+            "service": 1,
+            "status": "pending",
+            "start_time": "2025-11-07T09:00:00Z",
+            "notes": ""
+        }
+    }
+]

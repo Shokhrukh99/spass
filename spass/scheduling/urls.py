@@ -1,11 +1,22 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
+from rest_framework.routers import DefaultRouter
+from .views_api import *
+
+router = DefaultRouter()
+router.register(r'patient', PatientViewSet)
+router.register(r'doctors', DoctorViewSet)
+router.register(r'services', ServiceViewSet)
+router.register(r'appointments', AppointmentViewSet)
+
 
 urlpatterns = [
+    path('api/', include(router.urls)),
     path('', views.home, name='home'),
     path('patients/', views.patients_list, name='patients'),
     path('doctors/', views.doctors_list, name='doctors'),
     path('services/', views.services_list, name='services'),
+    path('appointments/', views.appointments_list, name='appointments'),
     # --- PATIENTS ---
     path('patients/create/', views.create_patient, name='create_patient'),
     path('patients/update/<int:id>', views.update_patient, name='update_patient'),
@@ -18,4 +29,9 @@ urlpatterns = [
     path('services/create/', views.create_service, name='create_service'),
     path('services/update/<int:id>/', views.update_service, name='update_service'),
     path('services/delete/<int:id>/', views.delete_service, name='delete_service'),
+    # ---APPOINTMENTS ---
+    path('appointments/create/', views.create_appointment, name='create_appointment'),
+    path('appointment/<int:pk>', views.appointment_detail, name='appointment_detail'),
+    path('appointments/update/<int:pk>/', views.AppointmentUpdateView.as_view(), name='update_appointment'),
+    path('appointments/delete/<int:pk>/', views.AppointmentDeleteView.as_view(), name='delete_appointment'),
 ]
